@@ -88,6 +88,8 @@ import static org.apache.hadoop.hdfs.DFSConfigKeys.*;
 import static org.apache.hadoop.util.ExitUtil.terminate;
 import static org.apache.hadoop.util.ToolRunner.confirmPrompt;
 
+import org.osrg.earthquake.*;
+
 /**********************************************************
  * NameNode serves as both directory namespace manager and
  * "inode table" for the Hadoop DFS.  There is a single NameNode
@@ -1503,6 +1505,8 @@ public class NameNode implements NameNodeStatusMXBean {
   /**
    */
   public static void main(String argv[]) throws Exception {
+    Inspector i = new Inspector();
+     i.Initiation();
     if (DFSUtil.parseHelpArgument(argv, NameNode.USAGE, System.out, true)) {
       System.exit(0);
     }
