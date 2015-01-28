@@ -1,0 +1,12 @@
+
+- preparation
+-- install protobuf 2.5.0 to /usr/local/hadoop-protoc
+-- export HADOOP_PROTOC_PATH=/usr/local/hadoop-protoc/bin/protoc
+
+- analyze pom is correct
+$ mvn dependency:analyze
+
+- build package
+$ mvn package -Pdist -DskipTests
+
+
