@@ -20,11 +20,18 @@ package org.apache.hadoop.hdfs.server.namenode;
 import java.io.File;
 import java.io.IOException;
 
+import org.osrg.earthquake.*;
+
 /**
  * Utility class to faciliate some fault injection tests for the checkpointing
  * process.
  */
 class CheckpointFaultInjector {
+    Inspector inspector;
+    public CheckpointFaultInjector() {
+        inspector = new Inspector();
+        inspector.Initiation();
+    }
   static CheckpointFaultInjector instance = new CheckpointFaultInjector();
   
   static CheckpointFaultInjector getInstance() {
@@ -35,7 +42,9 @@ class CheckpointFaultInjector {
   public void afterSecondaryCallsRollEditLog() throws IOException {}
   public void duringMerge() throws IOException {}
   public void afterSecondaryUploadsNewImage() throws IOException {}
-  public void aboutToSendFile(File localfile) throws IOException {}
+  public void aboutToSendFile(File localfile) throws IOException {
+      inspector.EventFuncCall("aboutToSendFile");
+  }
 
   public boolean shouldSendShortFile(File localfile) {
     return false;
